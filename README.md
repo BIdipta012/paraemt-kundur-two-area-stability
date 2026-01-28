@@ -2,7 +2,7 @@
 
 This repository contains code and example data for the study:
 
-> EMT-Based Frequency Stability Assessment of a Modified Kundur Two-Area System Using the Open-Source ParaEMT Simulator (submitted to TENCON 2026).
+> EMT-Based Frequency Stability Assessment of a Modified Kundur Two-Area System Using the Open-Source ParaEMT Simulator 
 
 The project uses the open-source ParaEMT simulator to analyze frequency stability of the modified Kundur two-area benchmark (ParaEMT system 6) under five operating scenarios:
 
