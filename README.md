@@ -19,7 +19,7 @@ which are useful for microgrid protection and control design.
 
 - Python 3.12 (or similar 3.x version)
 - ParaEMT (NREL open-source EMT simulator)
-- NumPy
+- NumPy>=1.26 
 - Pandas
 - Numba
 - (Optional) Matplotlib for plotting
