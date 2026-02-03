@@ -82,17 +82,17 @@ def run_scenario(
     # --------- Scenario-specific settings ---------
 
     if scenario_name == "Baseline":
-        # Baseline: const-RLC, grid-connected, no major events [file:37][file:75]
+        # Baseline: const-RLC, grid-connected, no major events
         # (defaults already reflect this)
         pass
 
     elif scenario_name == "Strong_Grid":
-        # Strong Grid: const-RLC, stiff external grid, no islanding or fault [file:37][file:75]
+        # Strong Grid: const-RLC, stiff external grid, no islanding or fault
         # The strong-grid nature is encoded in system 6 data / ini; no extra changes here.
         pass
 
     elif scenario_name == "Heavy_Load":
-        # HEAVY LOAD SCENARIO: increase loads, no gen trip, no fault [file:37]
+        # HEAVY LOAD SCENARIO: increase loads, no gen trip, no fault
         emt.t_release_f = 0.0
         emt.loadmodel_option = 1  # const-RLC
 
@@ -115,7 +115,7 @@ def run_scenario(
         emt.flag_sc = 1
 
     elif scenario_name == "Islanding":
-        # ISLANDING-LIKE SCENARIO: disable gen trip, change load model at 1.5 s [file:37]
+        # ISLANDING-LIKE SCENARIO: disable gen trip, change load model at 1.5 s
         emt.t_gentrip = 100.0
         emt.i_gentrip = 0
         emt.flag_gentrip = 1
@@ -134,8 +134,8 @@ def run_scenario(
         emt.dsp = -0.02
         emt.flag_sc = 1
 
-    elif scenario_name == "Fault_LLG":
-        # FAULT_LLG SCENARIO: const-RLC load, apply LLG fault [file:37]
+    elif scenario_name == "Fault_LLG"
+        # FAULT_LLG SCENARIO: const-RLC load, apply LLG fault
         t_release_f = 0.0
         loadmodel_option = 1
         emt.t_release_f = t_release_f
@@ -147,7 +147,7 @@ def run_scenario(
         emt.flag_gentrip = 1
         emt.flag_reinit = 1
 
-        # configure the fault (based on your previous project)
+        # configure the fault
         emt.i_faultbus = 7      # fault bus index in the two-area system
         emt.Rfault = 0.01       # low fault resistance
         emt.fault_time = 2.0    # fault applied at 2.0 s
@@ -205,7 +205,6 @@ def run_scenario(
 
         emt.x_pred = {0: emt.x_pred[1], 1: emt.x_pred[2], 2: emt.x_pv_1}
 
-        # save downsampled states
         if np.mod(tn, DSrate) == 0:
             tsave += 1
             emt.t.append(tn * ts)
@@ -219,10 +218,6 @@ def run_scenario(
             if len(pfd.load_bus) > 0:
                 emt.x_load[tsave] = emt.x_load_pv_1.copy()
             emt.v[tsave] = emt.Vsol.copy()
-
-    # If your workflow has snapshot/result-saving utilities, call them here:
-    # save_snp(output_snp_ful, pfd, ini, dyd, emt)
-    # save_res(output_res, emt)
 
     t1 = time.time()
     print(f"{scenario_name}: simulation completed in {t1 - t0:.1f} s")
