@@ -134,7 +134,7 @@ def run_scenario(
         emt.dsp = -0.02
         emt.flag_sc = 1
 
-    elif scenario_name == "Fault_LLG"
+    elif scenario_name == "Fault_LLG":
         # FAULT_LLG SCENARIO: const-RLC load, apply LLG fault
         t_release_f = 0.0
         loadmodel_option = 1
